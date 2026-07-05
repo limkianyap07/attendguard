@@ -48,7 +48,7 @@ export default function App() {
   const [step, setStep] = useState<Step>('identity');
   const [studentId, setStudentId] = useState('');
   const [studentName, setStudentName] = useState('');
-  const [enrolled, setEnrolled] = useState(false);
+  const [, setEnrolled] = useState(false);
   const [qrPayload, setQrPayload] = useState<QrPayload | null>(null);
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
   const [lat, setLat] = useState<number | null>(null);
