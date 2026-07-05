@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-display);
+  background: #030712;
+  color: #e2e8f0;
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+@keyframes scan-line {
+  0% { top: 10%; }
+  50% { top: 85%; }
+  100% { top: 10%; }
+}
+
+.scan-line {
+  animation: scan-line 2.5s ease-in-out infinite;
+}

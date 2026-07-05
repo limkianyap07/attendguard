@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Code", "Fira Code", monospace;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-display);
+  background: #030712;
+  color: #e2e8f0;
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.glow-blue {
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+}
+
+.glow-green {
+  box-shadow: 0 0 40px rgba(52, 211, 153, 0.15);
+}
+
+.glow-red {
+  box-shadow: 0 0 40px rgba(248, 113, 113, 0.15);
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes countdown {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 283; }
+}

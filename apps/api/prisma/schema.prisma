@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  LECTURER
+}
+
+enum SessionStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum AttendanceStatus {
+  PENDING
+  PRESENT
+  REJECTED
+}
+
+enum RejectionReason {
+  EXPIRED_QR
+  OUT_OF_RANGE
+  FACE_MISMATCH
+  WRONG_EMOTION
+}
+
+model User {
+  id             String   @id @default(uuid())
+  role           Role     @default(STUDENT)
+  student_id     String?  @unique
+  name           String
+  email          String   @unique
+  face_embedding String?
+  created_at     DateTime @default(now())
+
+  sessions_taught ClassSession[]     @relation("LecturerSessions")
+  attendance      AttendanceRecord[]
+  fraud_logs      FraudLog[]
+}
+
+model ClassSession {
+  id               String        @id @default(uuid())
+  lecturer_id      String
+  course_name      String
+  location_lat     Float
+  location_lng     Float
+  radius_meters    Int           @default(50)
+  required_emotion String
+  status           SessionStatus @default(ACTIVE)
+  created_at       DateTime      @default(now())
+
+  lecturer   User               @relation("LecturerSessions", fields: [lecturer_id], references: [id])
+  attendance AttendanceRecord[]
+  fraud_logs FraudLog[]
+}
+
+model AttendanceRecord {
+  id               String           @id @default(uuid())
+  session_id       String
+  student_id       String
+  checked_in_at    DateTime         @default(now())
+  geo_verified     Boolean          @default(false)
+  face_verified    Boolean          @default(false)
+  emotion_verified Boolean          @default(false)
+  final_status     AttendanceStatus @default(PENDING)
+
+  session ClassSession @relation(fields: [session_id], references: [id])
+  student User         @relation(fields: [student_id], references: [id])
+
+  @@unique([session_id, student_id])
+}
+
+model FraudLog {
+  id               String          @id @default(uuid())
+  session_id       String
+  student_id       String
+  attempted_at     DateTime        @default(now())
+  rejection_reason RejectionReason
+
+  session ClassSession @relation(fields: [session_id], references: [id])
+  student User         @relation(fields: [student_id], references: [id])
+}
