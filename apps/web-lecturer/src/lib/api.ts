@@ -1,7 +1,4 @@
-export const API_URL =
-  import.meta.env.VITE_API_URL ||
-  `http://${typeof window !== 'undefined' ? window.location.hostname : 'localhost'}:4000`;
-
+export const API_URL = import.meta.env.VITE_API_URL || 'https://attendguard-api.onrender.com/api';
 export async function api<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     headers: { 'Content-Type': 'application/json', ...options?.headers },

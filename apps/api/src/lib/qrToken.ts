@@ -38,7 +38,7 @@ export function getSecondsRemainingInWindow(): number {
 export function buildQrPayload(sessionId: string, window?: number) {
   const w = window ?? getCurrentWindow();
   const token = generateQrToken(sessionId, w);
-  const studentAppUrl = process.env.STUDENT_APP_URL || 'http://localhost:5174';
+  const studentAppUrl = process.env.STUDENT_APP_URL || '[https://attendguard-api.onrender.com](https://attendguard-api.onrender.com)';
   return {
     sessionId,
     window: w,

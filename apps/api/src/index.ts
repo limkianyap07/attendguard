@@ -100,6 +100,6 @@ io.on('connection', (socket) => {
 });
 
 httpServer.listen(PORT, () => {
-  console.log(`AttendGuard API running on http://localhost:${PORT}`);
+  console.log(`AttendGuard API running on https://attendguard-api.onrender.com`);
   console.log(`QR token window: ${QR_WINDOW_SECONDS}s | window #${getCurrentWindow()}`);
 });
