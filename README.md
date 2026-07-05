@@ -34,14 +34,14 @@ Lecturer Dashboard: http://localhost:5173
 
 Student Check-In: http://localhost:5174
 
-API: http://localhost:4000
+API: [https://attendguard-api.onrender.com](https://attendguard-api.onrender.com)
 
 
 ***
 
 ### ⚠️ ONE CRITICAL HACKATHON WARNING ⚠️
 
-I noticed your original README mentions an **API running on `localhost:4000`**. 
+I noticed your original README mentions an **API running on `[https://attendguard-api.onrender.com](https://attendguard-api.onrender.com)`**. 
 
 Since you successfully put the two front-end websites on the internet via Render, they are now public. However, if your API (backend and database) is still only on your local computer, your live websites will likely fail to log in or save data because they are trying to talk to a local server that isn't connected to the internet. 
 
